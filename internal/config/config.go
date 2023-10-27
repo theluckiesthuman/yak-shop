@@ -3,6 +3,7 @@ package config
 import (
 	"log"
 	"os"
+	"path/filepath"
 	"regexp"
 
 	"github.com/joho/godotenv"
@@ -26,7 +27,7 @@ func loadConfig() {
 	currentWorkDirectory, _ := os.Getwd()
 	rootPath := projectName.Find([]byte(currentWorkDirectory))
 
-	err := godotenv.Load(string(rootPath) + `/.env`)
+	err := godotenv.Load(filepath.Join(string(rootPath), ".env"))
 	if err != nil {
 		log.Fatalln(err)
 	}
