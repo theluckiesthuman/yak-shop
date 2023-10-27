@@ -1,0 +1,4 @@
+(*dto.Stock)({
+  Milk: (float64) 1104.48,
+  Wool: (int) 3
+})
