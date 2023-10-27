@@ -1,0 +1,22 @@
+(*dto.Herd)({
+  Yaks: ([]dto.LabYak) (len=3) {
+    (dto.LabYak) {
+      Name: (string) (len=7) "Betty-1",
+      Age: (float64) 4.13,
+      Sex: (string) (len=1) "f",
+      IsFirstTimeShaved: (bool) false
+    },
+    (dto.LabYak) {
+      Name: (string) (len=7) "Betty-2",
+      Age: (float64) 8.13,
+      Sex: (string) (len=1) "f",
+      IsFirstTimeShaved: (bool) false
+    },
+    (dto.LabYak) {
+      Name: (string) (len=7) "Betty-3",
+      Age: (float64) 9.63,
+      Sex: (string) (len=1) "f",
+      IsFirstTimeShaved: (bool) false
+    }
+  }
+})
