@@ -1,7 +1,7 @@
 # Yak Shop
 This is a solution for the Yak Shop problem. The solution is written in Go and uses the [echo](https://echo.labstack.com/docs/routing) and [cobra](https://github.com/spf13/cobra) cli.
 
-For the unit tests assertions, I have used bith testify and cupaloy. The reason for this is that I wanted to try out cupaloy. It is a snapshot testing library for Go. It is similar to Jest snapshot testing. It is very easy to use and it is very useful for testing the JSON responses.
+For the unit tests assertions, I have used both testify and cupaloy. The reason for this is that I wanted to try out cupaloy. It is a snapshot testing library for Go. It is similar to Jest snapshot testing. It is very easy to use and it is very useful for testing the JSON responses.
 
 ## Requirements
 * [Go](https://golang.org/doc/install)
@@ -13,12 +13,21 @@ Run the following command to install the dependencies:
 go mod tidy
 ```
 
-It contains one co
+
 
 ## Run the tests
 ```
 go test ./...
 ```
+<div class="warning" style='padding:0.1em; background-color:#E9D8FD; color:#69337A'>
+<span>
+<p style='margin-top:1em; text-align:center'>
+<b>On the importance of testing the endpoints</b></p>
+<p style='margin-left:1em;'>
+While testing the REST endpoints, make sure to execute the load endpoint first. Otherwise, you will get an empty response from the other endpoints.
+</p>
+</span>
+</div>
 
 ## User Story 1
 YAK-1: As a Yak Shepherd, I want to be able to read in a XML file that contains data about my herd so that I can query it.
@@ -208,13 +217,26 @@ Connection: close
 }
 ```
 
+## User Story 5
+YAK-5: As a Yak Shepherd I want to have a user interface in my browser which I can use to order goods.
+The user interface should be able to place an order using the exposed REST services, and provide feedback whether the order was placed successfully, partial successfully, or failed. In case of a partial success it should output what you will get delivered.
 
+## Solution
 
+I have used go templates to render the HTML. The templates are located in the `html` folder.
 
+Run the program with the following command:
+```
+go run main.go -f ./data/herd.xml -T 13
+```
+or
+```
+make run
+```
 
+Then open the following URL in your browser:
+```
+http://localhost:8080/yak-shop/order-template
+```
 
-
-
-https://github.com/xebia/yakshop-theluckiesthuman
-
-https://classroom.github.com/assignment-invitations/608de412fe58fefd7f6ca70305eb125e/status
+![Alt text](image-1.png)

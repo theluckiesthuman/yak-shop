@@ -43,4 +43,3 @@ func (y *yakStore) Read() entities.Herd {
 	}
 	return herd
 }
-

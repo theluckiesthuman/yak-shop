@@ -15,4 +15,5 @@ func RegisterYakHandlers(g *echo.Group) {
 	g.GET("/stock/:T", yh.ViewStock)
 	g.GET("/herd/:T", yh.ViewHerd)
 	g.POST("/order/:T", yh.Order)
+	g.GET("/order-template", yh.OrderTemplate)
 }

@@ -1,0 +1,72 @@
+{
+	"info": {
+		"_postman_id": "447d9239-c3e7-4993-ad6f-8707639a917e",
+		"name": "Yak Shop",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "30001094"
+	},
+	"item": [
+		{
+			"name": "load yaks",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/xml",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<herd>\n<labyak name=\"Betty-1\" age=\"4\" sex=\"f\" />\n<labyak name=\"Betty-2\" age=\"8\" sex=\"f\" />\n<labyak name=\"Betty-3\" age=\"9.5\" sex=\"f\" />\n</herd>"
+				},
+				"url": "http://localhost:8080/yak-shop/load"
+			},
+			"response": []
+		},
+		{
+			"name": "view stock",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": "http://localhost:8080/yak-shop/stock/13"
+			},
+			"response": []
+		},
+		{
+			"name": "view herd",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "http://localhost:8080/yak-shop/herd/13"
+			},
+			"response": []
+		},
+		{
+			"name": "order",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\"customer\": \"Medvedev\",\n\"order\": { \"milk\": 1100, \"skins\": 3 }\n}"
+				},
+				"url": "http://localhost:8080/yak-shop/order/14"
+			},
+			"response": []
+		}
+	]
+}
