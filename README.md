@@ -28,7 +28,6 @@ The URL for the UI is: `http://localhost:8080/yak-shop/order-template`
 
 
 
-
 ## Installation
 Run the following command to install the dependencies:
 ```
@@ -50,9 +49,12 @@ By default, the REST API will run on port 8080. You can change the port in the `
 ```
 PORT=8080
 ```
+> :warning: **Important Note:**
+> 
+> - Before running any other APIs, it's crucial to first execute the load API; failing to do so will result in the other APIs returning empty results.
+> 
+> - For easy testing, I have created a POSTMAN collection. You can refer to the `postman` folder for the same.
 
-[!IMPORTANT]  
- We must execute the load API before executing the other APIs. Otherwise, rest of the APIs will return empty results.
 
 ## User Story 1
 YAK-1: As a Yak Shepherd, I want to be able to read in a XML file that contains data about my herd so that I can query it.
