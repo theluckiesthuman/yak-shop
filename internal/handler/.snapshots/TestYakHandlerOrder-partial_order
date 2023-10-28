@@ -1,6 +1,6 @@
-HTTP/1.1 200 OK
+HTTP/1.1 206 Partial Content
 Connection: close
 Content-Type: application/json; charset=UTF-8
 
-{"milk":23050.25,"skins":805}
+{"skins":3}
 

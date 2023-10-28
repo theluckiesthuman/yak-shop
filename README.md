@@ -1,11 +1,33 @@
 # Yak Shop
 This is a solution for the Yak Shop problem. The solution is written in Go and uses the [echo](https://echo.labstack.com/docs/routing) and [cobra](https://github.com/spf13/cobra) cli.
 
-For the unit tests assertions, I have used both testify and cupaloy. The reason for this is that I wanted to try out cupaloy. It is a snapshot testing library for Go. It is similar to Jest snapshot testing. It is very easy to use and it is very useful for testing the JSON responses.
-
 ## Requirements
 * [Go](https://golang.org/doc/install)
 * [Git](https://git-scm.com/downloads)
+
+For the unit tests assertions, I have used both testify and cupaloy. The reason for this is that I wanted to try out cupaloy. It is a snapshot testing library for Go. It is similar to Jest snapshot testing. It is very easy to use and it is very useful for testing the JSON responses.
+
+The solution is divided into 3 parts:
+* The Yak Shop CLI
+* The Yak Shop API
+* The Yak Shop UI
+
+
+> The Yak shop CLI is to query the herd and the stock. It is located in the `cmd` folder.
+
+
+> The Yak Shop API is a REST API that exposes the following endpoints:
+* POST /yak-shop/load
+* GET /yak-shop/stock/:T
+* GET /yak-shop/herd/:T
+* POST /yak-shop/order/:T
+
+> The Yak Shop UI is a web interface that allows the user to place an order. It uses the REST API to place the order.
+The UI is located in the `html` folder.
+The URL for the UI is: `http://localhost:8080/yak-shop/order-template`
+
+
+
 
 ## Installation
 Run the following command to install the dependencies:
@@ -14,20 +36,23 @@ go mod tidy
 ```
 
 
-
 ## Run the tests
 ```
 go test ./...
 ```
-<div class="warning" style='padding:0.1em; background-color:#E9D8FD; color:#69337A'>
-<span>
-<p style='margin-top:1em; text-align:center'>
-<b>On the importance of testing the endpoints</b></p>
-<p style='margin-left:1em;'>
-While testing the REST endpoints, make sure to execute the load endpoint first. Otherwise, you will get an empty response from the other endpoints.
-</p>
-</span>
-</div>
+
+# Run the REST API
+```
+go run main.go
+```
+
+By default, the REST API will run on port 8080. You can change the port in the `.env` file.
+```
+PORT=8080
+```
+
+[!IMPORTANT]  
+ We must execute the load API before executing the other APIs. Otherwise, rest of the APIs will return empty results.
 
 ## User Story 1
 YAK-1: As a Yak Shepherd, I want to be able to read in a XML file that contains data about my herd so that I can query it.
@@ -46,7 +71,7 @@ N.B. The age is given in standard Yak years. Your program should take 2 paramete
 • An integer T, representing the elapsed time in days
 
 ## Solution
-Run the program with the following command:
+Execute the following command:
 ```
 go run cmd/main.go -f ./data/herd.xml -T 13
 ```
