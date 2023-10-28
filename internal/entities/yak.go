@@ -30,7 +30,7 @@ func (y Yak) CalculateMilk(elapsedDays int) float64 {
 		ageInDays := y.Age*100 + float64(day)
 
 		// A LabYak dies the day it turns 10.
-		if ageInDays >= 1000 {
+		if y.isDead(ageInDays) {
 			return totalMilk
 		}
 
@@ -42,12 +42,21 @@ func (y Yak) CalculateMilk(elapsedDays int) float64 {
 	return totalMilk
 }
 
+func (y Yak) isDead(ageInDays float64) bool {
+	return ageInDays >= 1000
+}
+
 func (y *Yak) GetSkinStockTillDay(elapsedDays int) int {
-	ageInDay := int(y.Age * 100)
 	totalSkinInStock := 0
 
 	for day := 0; day < elapsedDays; day++ {
-		if y.shouldShaveToday(ageInDay+day, day) {
+		ageInDays := y.Age*100 + float64(day)
+
+		// A LabYak dies the day it turns 10.
+		if y.isDead(ageInDays) {
+			return totalSkinInStock
+		}
+		if y.shouldShaveToday(ageInDays, day) {
 			totalSkinInStock++
 		}
 	}
@@ -55,19 +64,23 @@ func (y *Yak) GetSkinStockTillDay(elapsedDays int) int {
 	return totalSkinInStock
 }
 
-func (y *Yak) shouldShaveToday(currentAge, day int) bool {
+func (y *Yak) shouldShaveToday(currentAge float64, day int) bool {
 	if !y.IsFirstTimeShaved {
 		y.IsFirstTimeShaved = true
 		return true
 	} else {
-		return day > (8 + int(float64(currentAge)*0.01))
+		return float64(day) > float64(8+currentAge*0.01)
 	}
 }
 
 func (y *Yak) CalculateLastShavedAge(elapsedDays int) float64 {
-	ageInDay := int(y.Age * 100)
 	for day := 0; day < elapsedDays; day++ {
-		if y.shouldShaveToday(ageInDay+day, day) {
+		ageInDays := y.Age*100 + float64(day)
+
+		if y.isDead(ageInDays) {
+			break
+		}
+		if y.shouldShaveToday(ageInDays, day) {
 			y.AgeLastShaved = y.Age + float64(day)/100
 		}
 	}

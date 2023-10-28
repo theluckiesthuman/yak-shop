@@ -1,6 +1,7 @@
 package implementation
 
 import (
+	"sort"
 	"sync"
 
 	"github.com/theluckiesthuman/yakshop/internal/entities"
@@ -37,9 +38,15 @@ func (y *yakStore) Reset() {
 func (y *yakStore) Read() entities.Herd {
 	y.mx.RLock()
 	defer y.mx.RUnlock()
+	keys := make([]int, 0, len(y.yakStore))
+	for k := range y.yakStore {
+		keys = append(keys, k)
+	}
+	sort.Ints(keys)
+
 	var herd entities.Herd
-	for _, yak := range y.yakStore {
-		herd.Yaks = append(herd.Yaks, yak)
+	for _, k := range keys {
+		herd.Yaks = append(herd.Yaks, y.yakStore[k])
 	}
 	return herd
 }

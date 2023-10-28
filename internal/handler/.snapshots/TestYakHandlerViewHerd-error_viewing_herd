@@ -1,0 +1,6 @@
+HTTP/1.1 200 OK
+Connection: close
+Content-Type: application/json; charset=UTF-8
+
+{"herd":[{"name":"Betty 1","age":14,"age-last-shaved":9.99},{"name":"Betty 2","age":18,"age-last-shaved":9.99},{"name":"Betty 8","age":19.5,"age-last-shaved":9.99}]}
+
