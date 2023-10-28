@@ -19,7 +19,7 @@ func init() {
 }
 
 type config struct {
-	PORT string `envconfig:"PORT" required:"true"`
+	Port string `envconfig:"PORT" required:"true"`
 }
 
 func loadConfig() {
