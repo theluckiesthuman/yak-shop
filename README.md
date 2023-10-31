@@ -252,16 +252,8 @@ The user interface should be able to place an order using the exposed REST servi
 
 I have used go templates to render the HTML. The templates are located in the `html` folder.
 
-Run the program with the following command:
-```
-go run main.go -f ./data/herd.xml -T 13
-```
-or
-```
-make run
-```
 
-Then open the following URL in your browser:
+Open the following URL in your browser:
 ```
 http://localhost:8080/yak-shop/order-template
 ```
